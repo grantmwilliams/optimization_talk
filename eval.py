@@ -76,10 +76,8 @@ Optimizers:         Functions:
 """
 
 def main():
-    #optimizers = [0, 1, 2, 3, 4]
-    optimizers = [4]
+    optimizers = range(0,5)
     functions = range(0,11)
-    #functions = [10]
     run_test(optimizers, functions, verbose=True)
 
 if __name__ == '__main__':
