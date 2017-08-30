@@ -61,8 +61,7 @@ def run_test(optimizers, functions, ensembles = 10, tol=1e-6, verbose=False, plo
                                   ('% Success', success), ('Avg F(x) Calls', avg_fun), ('Ensembles', ensembles)]))
 
             df = pd.DataFrame(df_list)
-            print(df)
-            #print(tabulate(df, headers='keys', tablefmt='fancy_grid'))
+            print(tabulate(df, headers='keys', tablefmt='fancy_grid'))
             print('\n')
 
     return 0

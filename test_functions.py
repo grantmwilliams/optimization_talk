@@ -12,7 +12,7 @@ def get_range(f):
                   bukin:[-15.0,-5.0, -3.0,3.0],
                   easom:[-100.0,100.0, -100.0,100.0],
                   eggholder:[-512.0,512.0, -512.0,512.0],
-                  goldstein: [-2, 2, -2, 2],
+                  goldstein: [-2.0, 2.0, -2.0, 2.0],
                   holder:[-10.0,10.0, -10.0,10.0],
                   matyas:[-10.0,10.0, -10.0,10.0],
                   rosenbrock:[-2.0,2.0, -1.0,3.0],
@@ -34,6 +34,19 @@ def get_final_min(f):
                 sphere: 0.0}
 
     return func_min[f]
+
+def get_final_coords(f):
+    func_coords = {ackley:(0.0,0.0),
+                beale:(3.0,0.5),
+                booth:(1.0,3.0),
+                bukin:(-10.0,1.0),
+                easom:(np.pi,np.pi),
+                eggholder:(512.0,404.2319),
+                goldstein:(0,-1),
+                holder:(8.05502, 9.66459),
+                matyas:(0.0,0.0),
+                rosenbrock: (1.0,1.0),
+                sphere: (0.0,0.0)}
 
 @Counter.count
 def ackley(x, y):
