@@ -48,6 +48,8 @@ def get_final_coords(f):
                 rosenbrock: (1.0,1.0),
                 sphere: (0.0,0.0)}
 
+    return func_coords[f]
+
 @Counter.count
 def ackley(x, y):
 
