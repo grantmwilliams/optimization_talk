@@ -15,7 +15,8 @@ def get_range(f):
                   goldstein: [-2, 2, -2, 2],
                   holder:[-10.0,10.0, -10.0,10.0],
                   matyas:[-10.0,10.0, -10.0,10.0],
-                  rosenbrock:[-2.0,2.0, -1.0,3.0]}
+                  rosenbrock:[-2.0,2.0, -1.0,3.0],
+                  sphere:[-5.12,5.12, -5.12,5.12]}
 
     return func_range[f]
 
@@ -29,7 +30,8 @@ def get_final_min(f):
                 goldstein:3.0,
                 holder:-19.2085,
                 matyas:0.0,
-                rosenbrock: 0.0}
+                rosenbrock: 0.0,
+                sphere: 0.0}
 
     return func_min[f]
 
@@ -75,3 +77,7 @@ def matyas(x, y):
 @Counter.count
 def rosenbrock(x, y):
     return (1 - x) ** 2 + 100.0 * (y - x ** 2) ** 2
+
+@Counter.count
+def sphere(x, y):
+    return x**2 + y**2

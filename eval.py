@@ -10,13 +10,13 @@ from utilities import *
 from tabulate import tabulate
 from ga import *
 
-def run_test(optimizers, functions, ensembles = 10, tol=1e-7, verbose=False, plotting=False):
-    opts = [hooke_jeeves, isd, leapfrog, lm]
-    funcs = [ackley, beale, booth, bukin, easom, eggholder, goldstein, holder, matyas, rosenbrock]
+def run_test(optimizers, functions, ensembles = 10, tol=1e-6, verbose=False, plotting=False):
+    opts = [hooke_jeeves, isd, leapfrog, lm, ga]
+    funcs = [ackley, beale, booth, bukin, easom, eggholder, goldstein, holder, matyas, rosenbrock, sphere]
 
-    opt_names = ['hooke_jeeves', 'isd', 'leapfrog', 'lm']
+    opt_names = ['hooke_jeeves', 'isd', 'leapfrog', 'lm', 'ga']
     func_names = ['ackley', 'beale', 'booth', 'bukin', 'easom', 'eggholder',
-                  'goldstein', 'holder', 'matyas', 'rosenbrock']
+                  'goldstein', 'holder', 'matyas', 'rosenbrock', 'sphere']
 
     if verbose:
         for f in functions:
@@ -66,12 +66,21 @@ def run_test(optimizers, functions, ensembles = 10, tol=1e-7, verbose=False, plo
 
     return 0
 
-def main():
-    #optimizers = [0, 1, 2, 3]
-    optimizers = [2]
-    functions = range(0,9)
-    run_test(optimizers, functions, verbose=True)
+"""
+Optimizers:         Functions: 
+0. hooke_jeeves     0. ackley     5. eggholder   10. sphere
+1.isd               1. beale      6. goldstein
+2. leapfrog         2. booth      7. holder
+3. lm               3. bukin      8. matyas
+4. ga               4. easom      9. rosenbrock
+"""
 
+def main():
+    optimizers = [0, 1, 2, 3, 4]
+    #optimizers = [4]
+    functions = range(0,11)
+    #functions = [10]
+    run_test(optimizers, functions, verbose=True)
 
 if __name__ == '__main__':
     main()
