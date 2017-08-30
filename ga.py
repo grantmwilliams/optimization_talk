@@ -35,6 +35,8 @@ def ga(f, pop_size=100, genome_size = 30, tol=1e-7, max_iter=150, verbose=False,
     fit = [f(a, b) for a, b in zip(x, y)]
     bestidx = np.argmin(f)
     best = fit[bestidx]
+    bestx = x[bestidx]
+    besty = y[bestidx]
 
     for iterations in range(0, max_iter):
         # Decode from binary and normalize decimal numbers in range of our search space
@@ -72,19 +74,13 @@ def ga(f, pop_size=100, genome_size = 30, tol=1e-7, max_iter=150, verbose=False,
         ypop2 = ychromosome[W[0::2]]
         yp2a = ychromosome[W[1::2]]
 
-        # get crossover points and create logical index for new array
-        xref = np.ones((pop_size, genome_size)).astype(int) * np.arange(0, genome_size).astype(int)
-        cp = np.array(np.random.randint(0,genome_size,size=(pop_size)))
-        xmat = np.array([cp,] * genome_size).transpose()
-        xidx =  np.equal(xmat < xref, xmat > xref)
-
-        yref = np.ones((pop_size, genome_size)).astype(int) * np.arange(0, genome_size).astype(int)
+        # use logical indexing to perform 2pt crossover (logical indexing doesnt seem worth it)
+        ref = np.ones((pop_size, genome_size)).astype(int) * np.arange(0,genome_size).astype(int)
         cp = np.array(np.random.randint(0, genome_size, size=(pop_size)))
-        ymat = np.array([cp, ] * genome_size).transpose()
-        yidx = np.equal(ymat < yref, ymat > yref)
-
-        xpop2[xidx] = xp2a[xidx]
-        ypop2[yidx] = yp2a[yidx]
+        mat = np.array([cp,] * genome_size).transpose()
+        idx = np.equal(mat < ref, mat > ref)
+        xpop2[idx] = xp2a[idx]
+        ypop2[idx] = yp2a[idx]
 
         # add elite members back into population
         xpop2[0:elitism][:] = xelite
