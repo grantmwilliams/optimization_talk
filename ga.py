@@ -13,7 +13,7 @@ def normalize(chromosome, low, high):
     return (high - low) * ((chromosome - min(chromosome)) / (max(chromosome) - min(chromosome))) + low
 
 @Counter.count
-def ga(f, pop_size=100, genome_size = 30, tol=1e-7, max_iter=150, verbose=False, plotting=False):
+def ga(f, pop_size=100, genome_size = 30, tol=1e-7, max_iter=200, verbose=False, plotting=False):
 
     xy_range = get_range(f)
 
