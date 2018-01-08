@@ -108,4 +108,4 @@ def ga(f, pop_size=100, genome_size = 30, tol=1e-7, max_iter=200, verbose=False,
     if verbose:
         return best, (bestx, besty)
     else:
-        return 0
+        return best
