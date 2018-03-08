@@ -9,12 +9,12 @@ from collections import OrderedDict
 from utilities import *
 from tabulate import tabulate
 from ga import *
-
+from hga import *
 def run_test(optimizers, functions, ensembles = 10, tol=1e-6, verbose=False, plotting=False):
-    opts = [hooke_jeeves, isd, leapfrog, lm, ga]
+    opts = [hooke_jeeves, isd, leapfrog, lm, ga, hga_lf, hga_hj, hga_lm, hga_isd]
     funcs = [ackley, beale, booth, bukin, easom, eggholder, goldstein, holder, matyas, rosenbrock, sphere]
 
-    opt_names = ['hooke_jeeves', 'isd', 'leapfrog', 'lm', 'ga']
+    opt_names = ['hooke_jeeves', 'isd', 'leapfrog', 'lm', 'ga', 'hga lf', 'hga hj', 'hga lm', 'hga isd']
     func_names = ['ackley', 'beale', 'booth', 'bukin', 'easom', 'eggholder',
                   'goldstein', 'holder', 'matyas', 'rosenbrock', 'sphere']
 
@@ -76,8 +76,8 @@ Optimizers:         Functions:
 """
 
 def main():
-    optimizers = range(0,5)
-    functions = range(0,11)
+    optimizers = range(5, 9)
+    functions = range(0, 11)
     run_test(optimizers, functions, verbose=True)
 
 if __name__ == '__main__':

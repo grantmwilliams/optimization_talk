@@ -3,9 +3,17 @@ from test_functions import *
 from utilities import *
 
 @Counter.count
-def leapfrog(f, players=20, tol=1e-7, max_iter=1000, verbose=False, plotting=False):
+def leapfrog(f, players=20, tol=1e-7, max_iter=1000, loc=None, verbose=False, plotting=False):
 
-    xy_range = get_range(f)
+    if loc:
+       trange = get_range(f)
+       xy_range = [loc[0] + (np.abs(trange[0]) * .1),
+                   loc[0] - (np.abs(trange[0]) * .1),
+                   loc[1] + (np.abs(trange[1]) * .1),
+                   loc[1] - (np.abs(trange[1]) * .1)]
+
+    else:
+        xy_range = get_range(f)
 
     # initialize two arrays to hold our players for x and y coordinates
     px = np.zeros(players)

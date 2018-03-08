@@ -45,20 +45,32 @@ def local_search(x, y, f, delta, xy_range):
         return x, y
 
 @Counter.count
-def hooke_jeeves(f, tol=1e-7, max_iter=100, verbose=False, plotting=False):
+def hooke_jeeves(f, tol=1e-7, max_iter=100, loc=None, verbose=False, plotting=False):
 
-    # get search space range
-    xy_range = get_range(f)
+    trange = get_range(f)
 
+    if loc:
+        xy_range = [trange[0] + (np.abs(trange[0])/2),
+                    trange[0] - (np.abs(trange[0])/2),
+                    trange[1] + (np.abs(trange[1])/2),
+                    trange[1] - (np.abs(trange[1])/2)]
+
+        x = loc[0]
+        y = loc[1]
+
+    else:
+        # get search space range
+        xy_range = trange
+
+        # get random initial points
+        x = np.random.uniform(xy_range[0], xy_range[1])
+        y = np.random.uniform(xy_range[2], xy_range[3])
+        
     # the contraction ratio
     alpha = 0.5
 
     # set delta as 20% of the size of the search space
     delta = max(np.abs(xy_range[0] - xy_range[1]), np.abs(xy_range[2] - xy_range[3])) * .20
-
-    # get random initial points
-    x = np.random.uniform(xy_range[0], xy_range[1])
-    y = np.random.uniform(xy_range[2], xy_range[3])
 
     last_x = x
     last_y = y

@@ -2,7 +2,7 @@ import numpy as np
 from utilities import *
 from test_functions import *
 
-def isd(f, tol=1e-8, max_iter=1000, verbose=False, plotting=False):
+def isd(f, tol=1e-8, max_iter=1000, loc=None, verbose=False, plotting=False):
 
     # constants for gradient descent
     alpha = 1.1
@@ -11,8 +11,13 @@ def isd(f, tol=1e-8, max_iter=1000, verbose=False, plotting=False):
 
     xy_range = get_range(f)
 
-    x0 = np.random.uniform(xy_range[0], xy_range[1])
-    y0 = np.random.uniform(xy_range[2], xy_range[3])
+    if loc:
+        x0 = loc[0]
+        y0 = loc[1]
+
+    else:
+        x0 = np.random.uniform(xy_range[0], xy_range[1])
+        y0 = np.random.uniform(xy_range[2], xy_range[3])
 
     current = f(x0,y0)
     last = current
